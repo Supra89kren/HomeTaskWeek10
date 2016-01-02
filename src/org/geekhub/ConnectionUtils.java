@@ -1,6 +1,8 @@
 package org.geekhub;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 
 /**
@@ -16,7 +18,13 @@ public class ConnectionUtils {
      * @throws IOException
      */
     public static byte[] getData(URL url) throws IOException {
-        //implement me
-        return null;
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.openStream()));
+        StringBuffer stringBuffer = new StringBuffer();
+        String tempString;
+        while ((tempString=bufferedReader.readLine())!=null ){
+            stringBuffer.append(tempString);
+        }
+
+        return stringBuffer.toString().getBytes();
     }
 }
